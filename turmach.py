@@ -10,7 +10,21 @@ class TuringMachine:
         self.__null='λ'
         self.__alphabet=self.__alphabet_def+self.__null
         self.__tape=[self.__null]*100
-        self.__rules={}
+        self.__rules=[]
+
+    def getStatesCount(self):
+        print(len(self.__rules))
+
+    def addState(self):
+        l=len(self.__rules)
+        r={}
+        for x in self.__alphabet:
+            r[x]=[l,x,0]
+        print(r)
+        self.__rules.append(r)
+
+    def setRule(self,ifq,ifs,q,s,g):
+        self.__rules[ifq][ifs]=[q,s,g]
 
     def getTapeLenght(self):
         return len(self.__tape)
@@ -39,3 +53,4 @@ if __name__ == '__main__':
     print(tm.getTape())
     tm.setTape(4,['a']*100)
     print(tm.getTape())
+    tm.addState()

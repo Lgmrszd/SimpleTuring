@@ -4,20 +4,14 @@ __author__ = 'Lgmrszd'
 __version__ = '0.0.1b'
 
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QLineEdit, QCheckBox
-from PyQt5.QtGui import QPixmap
-from PyQt5.QtCore import Qt
+from PyQt5 import QtWidgets
 
-class MainWindow(QWidget):
-
-    def __init__(self):
-        super().__init__()
-        self.initUI()
-
-    def initUI(self):
-        pass
+from gui import Ui_Form
 
 if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    ex = MainWindow()
+    app = QtWidgets.QApplication(sys.argv)
+    Form = QtWidgets.QWidget()
+    ui=Ui_Form()
+    ui.setupUi(Form)
+    Form.show()
     sys.exit(app.exec_())
