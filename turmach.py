@@ -6,11 +6,12 @@ __version__ = '0.0.1b'
 class TuringMachine:
     __alphabet_def='abcdefghigklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ1234567890'
     def __init__(self):
-        self.__pointer=1
+        self.__pointer=0
         self.__null='λ'
         self.__alphabet=self.__alphabet_def+self.__null
         self.__tape=[self.__null]*100
         self.__rules=[]
+        self.__state=0
 
     def getStatesCount(self):
         print(len(self.__rules))
@@ -25,6 +26,23 @@ class TuringMachine:
 
     def setRule(self,ifq,ifs,q,s,g):
         self.__rules[ifq][ifs]=[q,s,g]
+
+    def makeStep(self):
+        rule=self.__rules[self.__state][self.__tape[self.__pointer]]
+        if rule[0]==-1:
+            return False, 'eop'
+        else:
+            self.__state=rule[0]
+            self.__tape[self.__pointer]=rule[1]
+            self.__pointer+=rule[2]
+            if self.__pointer<0:
+                return False, 'pgl'
+            elif self.__pointer>len(self.__tape)-1:
+                return False, 'pgr'
+            else:
+                return True, None
+
+
 
     def getTapeLenght(self):
         return len(self.__tape)

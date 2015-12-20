@@ -10,8 +10,6 @@ from gui import Ui_Form
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
-    Form = QtWidgets.QWidget()
-    ui=Ui_Form()
-    ui.setupUi(Form)
+    Form = Ui_Form(100,0,1)
     Form.show()
     sys.exit(app.exec_())
