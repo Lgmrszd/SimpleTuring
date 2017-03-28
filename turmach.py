@@ -3,12 +3,16 @@
 __author__ = 'Lgmrszd'
 __version__ = '0.0.1b'
 
+__alphabet_def='abcdefghigklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ1234567890'
+
+def getDefaultAlphabet():
+    return __alphabet_def
+
 class TuringMachine:
-    __alphabet_def='abcdefghigklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ1234567890'
     def __init__(self):
         self.__pointer=0
         self.__null='λ'
-        self.__alphabet=self.__alphabet_def+self.__null
+        self.__alphabet=getDefaultAlphabet()
         self.__tape=[self.__null]*100
         self.__rules=[]
         self.__state=0
@@ -16,13 +20,23 @@ class TuringMachine:
     def getStatesCount(self):
         print(len(self.__rules))
 
+    def setAlphabetToDefault(self,alphabet):
+        self.__alphabet=alphabet
+
+    def getAlphabet(self):
+        return self.__alphabet
+
     def addState(self):
         l=len(self.__rules)
         r={}
         for x in self.__alphabet:
             r[x]=[l,x,0]
+        r[self.__null]=[l,self.null,0]
         print(r)
         self.__rules.append(r)
+
+    def getNull(self):
+        return self.__null
 
     def setRule(self,ifq,ifs,q,s,g):
         self.__rules[ifq][ifs]=[q,s,g]

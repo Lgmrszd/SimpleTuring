@@ -6,10 +6,13 @@ __version__ = '0.0.1b'
 import sys
 from PyQt5 import QtWidgets
 
-from gui import Ui_Form
+import turmach
+from gui import MyForm
 
-if __name__ == '__main__':
-    app = QtWidgets.QApplication(sys.argv)
-    Form = Ui_Form(100,0,1)
-    Form.show()
-    sys.exit(app.exec_())
+TuringMachine=turmach.TuringMachine()
+
+app = QtWidgets.QApplication(sys.argv)
+Form = MyForm(100, 0, 1, TuringMachine.getAlphabet(), TuringMachine.getTape(), TuringMachine.getNull())
+Form.show()
+
+sys.exit(app.exec_())
